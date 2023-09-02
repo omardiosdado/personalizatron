@@ -18,7 +18,7 @@ st.subheader('Creador de correos presonalizados')
 st.write('Ingresar prospecto, empresa y sitio web en el panel de la izquierda para emprezar la personalización')
 st.divider()
 
-with open(r'C:\Users\omard\OneDrive\[02] EMPRESAS\08_Polímata.AI\01_Proyectos\01_Pruebas\config.yaml') as file:
+with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 authenticator = stauth.Authenticate(
     config['credentials'],
