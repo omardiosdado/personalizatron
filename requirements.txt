@@ -5,3 +5,4 @@ streamlit-lottie
 streamlit-authenticator
 langchain
 apify_client
+openai
