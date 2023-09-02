@@ -1,4 +1,4 @@
-!pip install streamlit_lottie
+pip install streamlit_lottie
 
 import streamlit as st
 import langchain_helper
