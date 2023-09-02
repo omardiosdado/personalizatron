@@ -4,6 +4,11 @@ import yaml
 from yaml.loader import SafeLoader
 from streamlit_lottie import st_lottie_spinner
 import streamlit_authenticator as stauth
+from langchain.document_loaders.base import Document
+from langchain.utilities import ApifyWrapper
+from langchain.chat_models import ChatOpenAI
+from langchain.chains.question_answering import load_qa_chain
+from apify_client import ApifyClient
 
 
 favicon = 'https://polimata.ai/wp-content/uploads/2023/07/favicon-32x32-1.png'
@@ -29,6 +34,40 @@ authenticator = stauth.Authenticate(
 )
 
 name, authentication_status, username = authenticator.login('Login', 'sidebar')
+
+
+def mail_personalizado(emp1, pros1, url1):
+    crawl_input={"crawlerType": "playwright:firefox",
+                 "excludeUrlGlobs": [],
+                 "maxCrawlDepth": 20,
+                 "maxCrawlPages": 1,
+                 "initialConcurrency": 0,
+                 "maxConcurrency": 200,
+                 "initialCookies": [],
+                 "dynamicContentWaitSecs": 10,
+                 "maxScrollHeightPixels": 5000,
+                 "htmlTransformer": "readableText",
+                 "readableTextCharThreshold": 100,
+                 "maxResults": 9999999,
+                 "startUrls": [{"url": url1}]
+                 }
+    
+    loader = apify.call_actor(
+        actor_id="apify/website-content-crawler",
+        run_input=crawl_input,
+        dataset_mapping_function=lambda item: Document(
+            page_content=item["text"] or "", metadata={"source": item["url"]}
+            ),)
+    docs=loader.load()
+
+    q='Formula un correo corto de 5-8 lineas para ' + pros1 + \
+        ' ofreciendole el servicio de generación de leads para ' + emp1 + \
+            '. El correo debe mencionar las soluciones de ' + emp1 + \
+                ' y como se pueden beneficiar a traves de la generación de leads, además de hacerle a '+ pros1 + ' un cumplido.'
+    email=chain.run(input_documents=docs, question=q)
+
+    response = {'correo':email}
+    return response
 
 if authentication_status == False:
     st.error('Username o contraseña incorrectos')
@@ -68,7 +107,12 @@ if authentication_status== True:
 
     if st.session_state.click:
         with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
-            response = langchain_helper.mail_personalizado(empresa, prospecto, url)
+            apify_client = ApifyClient(st.secrets["APIFY_API_TOKEN"])
+            apify = ApifyWrapper()
+            chat = ChatOpenAI(model_name="gpt-4",temperature=0.3,openai_api_key=st.secrets["OPENAI_API_KEY"])
+            chain = load_qa_chain(chat, chain_type="stuff")
+
+            response = mail_personalizado(empresa, prospecto, url)
         st.subheader('Correo para ' + prospecto + ' de ' + empresa + ':')
         st.info(response['correo'])
         st.balloons()
