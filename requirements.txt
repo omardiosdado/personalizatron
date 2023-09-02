@@ -1,10 +1,5 @@
 streamlit
-streamlit_lottie
+streamlit-lottie
 streamlit-authenticator
 yaml
-yaml.loader
-langchain.document_loaders.base
-langchain.utilities
-langchain.chat_models
-langchain.chains.question_answering
-requests
+
