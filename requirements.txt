@@ -1,6 +1,6 @@
 streamlit
 streamlit_lottie
-streamlit_authenticator
+streamlit-authenticator
 yaml
 yaml.loader
 langchain.document_loaders.base
