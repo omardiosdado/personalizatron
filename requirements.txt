@@ -1,6 +1,5 @@
 streamlit
 yaml
 streamlit-lottie
-streamlit_lottie
 streamlit-authenticator
-streamlit_authenticator
+langchain
