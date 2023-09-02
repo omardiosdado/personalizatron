@@ -1,5 +1,4 @@
 streamlit
-langchain_helper
 streamlit_lottie
 requests
 streamlit_authenticator
