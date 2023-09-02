@@ -1,6 +1,5 @@
 streamlit
 streamlit_lottie
-requests
 streamlit_authenticator
 yaml
 yaml.loader
@@ -8,3 +7,4 @@ langchain.document_loaders.base
 langchain.utilities
 langchain.chat_models
 langchain.chains.question_answering
+requests
