@@ -4,3 +4,4 @@ pyyaml
 streamlit-lottie
 streamlit-authenticator
 langchain
+apify_client
