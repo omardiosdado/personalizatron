@@ -1,10 +1,10 @@
 import streamlit as st
 import langchain_helper
 import requests
-import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 from streamlit_lottie import st_lottie_spinner
+import streamlit_authenticator as stauth
 
 favicon = 'https://polimata.ai/wp-content/uploads/2023/07/favicon-32x32-1.png'
 st.set_page_config(
