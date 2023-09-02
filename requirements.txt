@@ -1,5 +1,7 @@
 streamlit
 streamlit-lottie
+streamlit_lottie
 streamlit-authenticator
+streamlit_authenticator
 yaml
 
