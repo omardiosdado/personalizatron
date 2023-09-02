@@ -1,5 +1,5 @@
 streamlit
-yaml
+pyyaml
 streamlit-lottie
 streamlit-authenticator
 langchain
