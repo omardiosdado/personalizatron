@@ -1,12 +1,10 @@
-from dotenv import load_dotenv,find_dotenv
 from langchain.document_loaders.base import Document
 from langchain.utilities import ApifyWrapper
 from langchain.chat_models import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 
-
-load_dotenv(find_dotenv())
-
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+apify_client = ApifyClient(st.secrets["APIFY_API_TOKEN"])
 
 apify = ApifyWrapper()
 chat = ChatOpenAI(model_name="gpt-4",temperature=0.3)
