@@ -1,3 +1,5 @@
+!pip install streamlit_lottie
+
 import streamlit as st
 import langchain_helper
 from streamlit_lottie import st_lottie_spinner
