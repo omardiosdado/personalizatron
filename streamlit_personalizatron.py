@@ -4,7 +4,6 @@ import yaml
 from yaml.loader import SafeLoader
 from streamlit_lottie import st_lottie_spinner
 import streamlit_authenticator as stauth
-import langchain_helper
 from langchain_helper import mail_personalizado
 
 
